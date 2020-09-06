@@ -4,12 +4,15 @@ jobs:
   test:
     docker:
       - image: circleci/python:3
-    parallelism: 1
+    parallelism: 2
     steps:
       - checkout
       - run: pip install -e ".[dev]"
       - run: pip install -r requirements/tests.txt
-      - run: pytest --cov-config=setup.cfg --cov=src --cov-report=html --junit-xml=test-results/test-results.xml
+      - run:
+        command: |
+          echo $(circleci tests glob "tests/**/*.py")
+          circleci tests glob "tests/**/*.py" | pytest --cov-config=setup.cfg --cov=src --cov-report=html --junit-xml=test-results/test-results.xml
       - store_test_results:
           path: test-results
       - store_artifacts:
