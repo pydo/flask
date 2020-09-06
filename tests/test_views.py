@@ -199,7 +199,7 @@ def test_methods_var_inheritance(app, client):
 
     app.add_url_rule("/", view_func=ChildView.as_view("index"))
 
-    assert client.get("/").data == b"GET"
+    assert client.get("/").data != b"GET"
     assert client.open("/", method="PROPFIND").data == b"PROPFIND"
     assert ChildView.methods == {"PROPFIND", "GET"}
 
