@@ -9,7 +9,10 @@ jobs:
       - checkout
       - run: pip install -e ".[dev]"
       - run: pip install -r requirements/tests.txt
-      - run: pytest
+      - run: pytest --junit-xml=test-results
+      - store_test_results:
+          path: test-results
+
 workflows:
   version: 2
   test:
