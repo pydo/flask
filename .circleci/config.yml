@@ -9,7 +9,7 @@ jobs:
       - checkout
       - run: pip install -e ".[dev]"
       - run: pip install -r requirements/tests.txt
-      - run: pytest --cov=src --cov-report=html --junit-xml=test-results/test-results.xml
+      - run: pytest --cov-config=setup.cfg --cov=src --cov-report=html --junit-xml=test-results/test-results.xml
       - store_test_results:
           path: test-results
       - store_artifacts:
