@@ -11,8 +11,7 @@ jobs:
       - run: pip install -r requirements/tests.txt
       - run:
           command: |
-            echo $(circleci tests glob "tests/**/*.py")
-            circleci tests glob "tests/**/*.py" | pytest --cov-config=setup.cfg --cov=src --cov-report=html --junit-xml=test-results/test-results.xml
+            pytest --cov-config=setup.cfg --cov=src --cov-report=html --junit-xml=test-results/test-results.xml --circleci-parallelize
       - store_test_results:
           path: test-results
       - store_artifacts:
