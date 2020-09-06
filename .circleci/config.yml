@@ -4,7 +4,7 @@ jobs:
   test:
     docker:
       - image: circleci/python:3
-    parallelism: 2
+    parallelism: 1
     steps:
       - checkout
       - run: pip install -e ".[dev]"
